@@ -1,0 +1,583 @@
+{
+	"info": {
+		"_postman_id": "8e0417c4-2cd1-4630-b6a1-aa6eb301208d",
+		"name": "LOne",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Positive Tests",
+			"item": [
+				{
+					"name": "GET SpecificCharacter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "759e9f24-e145-49c7-ab99-716f9d60cbcf",
+								"exec": [
+									"pm.test(\"Verify that specified character details exist\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Verify that details of a specified Star War character is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData.name).to.eql(\"Luke Skywalker\");",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}people/1",
+							"host": [
+								"{{url}}people"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get SpecificPlanet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df014f48-60d5-4033-b68c-5578274b9ec0",
+								"exec": [
+									"pm.test(\"Verify that specified planet details exist\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Verify that details of a specified Star War planet is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData.name).to.eql(\"Tatooine\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}planets/1",
+							"host": [
+								"{{url}}planets"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SearchCharacter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d854ccae-589a-4268-b8b9-216b5c889eae",
+								"exec": [
+									"pm.test(\"Verify that search rendered valid results\", function () {",
+									"    pm.response.to.have.status(200);",
+									"   });",
+									"   ",
+									"",
+									"var body = JSON.parse(responseBody);",
+									"tests[\"Verify that character detail is returned for an existing character search request\"] = body.count > 0;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}people/?search=luke",
+							"host": [
+								"{{url}}people"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "luke"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET CharacterList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6603832c-758e-48fa-9935-822f6b2b3a47",
+								"exec": [
+									"pm.test(\"Verify that status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var body = JSON.parse(responseBody);\r",
+									"tests[\"Verify that list of all Star War planets is returned\"] = body.count > 0;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}people",
+							"host": [
+								"{{url}}people"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SearchPlanet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4e260fec-8a9c-4daf-9094-5191102eee30",
+								"exec": [
+									"pm.test(\"Verify that search rendered valid results\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var body = JSON.parse(responseBody);",
+									"tests[\"Verify that planet detail is returned for an existing planet search request\"] = body.count > 0;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}planets/?search=in",
+							"host": [
+								"{{url}}planets"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "in"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET PlanetList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "75044177-97d1-4ce9-8a9b-1599b9f3cb0b",
+								"exec": [
+									"pm.test(\"Verify that status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var body = JSON.parse(responseBody);\r",
+									"tests[\"Verify that list of all Star War planets is returned\"] = body.count > 0;\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}planets",
+							"host": [
+								"{{url}}planets"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Negative Tests",
+			"item": [
+				{
+					"name": "GET InvalidCharacterRequest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f268225-1272-403a-bf02-5f4b9187296a",
+								"exec": [
+									"pm.test(\"Verify Invalid Character Request\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}people/300",
+							"host": [
+								"{{url}}people"
+							],
+							"path": [
+								"300"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET NonExistingCharacterRequest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "40c12162-d7be-44aa-8435-0ca3de0bc140",
+								"exec": [
+									"pm.test(\"Verify Non Character Request\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}people/Prabjot",
+							"host": [
+								"{{url}}people"
+							],
+							"path": [
+								"Prabjot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET InvalidPlanetRequest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3893b406-7d5a-4d32-a4e8-ec039e1371a7",
+								"exec": [
+									"pm.test(\"Verify Invalid Planet Request\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}planets/Toronto",
+							"host": [
+								"{{url}}planets"
+							],
+							"path": [
+								"Toronto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET NonExistingPlanetRequest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9b170e97-f4ca-48af-8a9b-3273664a1d19",
+								"exec": [
+									"pm.test(\"Verify Non Planet Request\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}planets/8000",
+							"host": [
+								"{{url}}planets"
+							],
+							"path": [
+								"8000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SearchNonExistingCharacter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e31a7e68-dfbf-4bb5-bf2b-27a14362804a",
+								"exec": [
+									"/*pm.test(\"Verify that search rendered valid results\", function () {",
+									"    pm.response.to.have.status(400);",
+									"   });",
+									"   */",
+									"",
+									"pm.test(\"Verify non existing character search\", function () {",
+									"    pm.expect(pm.response.text()).to.include('\"count\":0');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}people/?search=900",
+							"host": [
+								"{{url}}people"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "900"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SearchInvalidCharacter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "779846fd-9de4-491c-bcaa-13633113139f",
+								"exec": [
+									"/*pm.test(\"Verify that search rendered valid results\", function () {",
+									"    pm.response.to.have.status(400);",
+									"   });",
+									"   */",
+									"",
+									"pm.test(\"Verify invalid character search\", function () {",
+									"    pm.expect(pm.response.text()).to.include('\"count\":0');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}people/?search=prabjot",
+							"host": [
+								"{{url}}people"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "prabjot"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SearchNonExistingPlanet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5d596d1-a7e4-431a-a842-0380f247626b",
+								"exec": [
+									"/*pm.test(\"Verify that search rendered valid results\", function () {",
+									"    pm.response.to.have.status(400);",
+									"   });",
+									"   */",
+									"",
+									"pm.test(\"Verify non existing planet search\", function () {",
+									"    pm.expect(pm.response.text()).to.include('\"count\":0');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}planets/?search=900",
+							"host": [
+								"{{url}}planets"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "900"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SearchInvalidPlanet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "10951fb8-83ce-4856-91e2-f435ba73e14d",
+								"exec": [
+									"/*pm.test(\"Verify that search rendered valid results\", function () {",
+									"    pm.response.to.have.status(400);",
+									"   });",
+									"   */",
+									"",
+									"pm.test(\"Verify invalid planet search\", function () {",
+									"    pm.expect(pm.response.text()).to.include('\"count\":0');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}planets/?search=Toronto",
+							"host": [
+								"{{url}}planets"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Toronto"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}people/schema",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}people/schema",
+							"host": [
+								"{{url}}people"
+							],
+							"path": [
+								"schema"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "08bc6ded-233c-4eae-bbdb-936d1cd18faa",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6757a2d6-a3a0-40cd-8510-ace939945118",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a75dd6d9-5c3a-4327-9b06-17014c5222ee",
+			"key": "url",
+			"value": "https://swapi.co/api/",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
